@@ -23,7 +23,7 @@ public class SeleniumTest {
 		Thread.sleep(300);
 		selenium.click("link=Login or Register");
 		Thread.sleep(300);
-		selenium.type("em", "mr.tincknell@gmail.com");
+		selenium.type("em", "dev@paperminer.com");
 		selenium.click("xpath=(//button[@type='button'])[5]");
 		Thread.sleep(300);
 		selenium.click("link=Query");
@@ -38,7 +38,7 @@ public class SeleniumTest {
 	        Thread.sleep(300);
 	        selenium.click("link=Login or Register");
 	        Thread.sleep(300);
-	        selenium.type("em", "mr.tincknell@gmail.com");
+	        selenium.type("em", "dev@paperminer.com");
 	        selenium.click("xpath=(//button[@type='button'])[5]");
 	        Thread.sleep(300);
 	        selenium.click("link=Logout");
@@ -53,7 +53,7 @@ public class SeleniumTest {
 		Thread.sleep(300);
 		selenium.click("link=Login or Register");
 		Thread.sleep(300);
-		selenium.type("em", "mr.tincknell@gmail.com");
+		selenium.type("em", "dev@paperminer.com");
 		selenium.click("xpath=(//button[@type='button'])[5]");
 		Thread.sleep(300);
 		selenium.open("/PaperMiner");
@@ -89,7 +89,7 @@ public class SeleniumTest {
 		Thread.sleep(600);
 		selenium.click("link=Login or Register");
 		Thread.sleep(600);
-		selenium.type("id=em", "mr.tincknell@gmail.com");
+		selenium.type("id=em", "dev@paperminer.com");
 		selenium.click("xpath=(//button[@type='button'])[5]");
 		Thread.sleep(300);
 		
@@ -138,7 +138,7 @@ public class SeleniumTest {
         selenium.click("link=Home");
         selenium.waitForPageToLoad("30000");
         selenium.click("link=Login or Register");
-        selenium.type("id=em", "mr.tincknell@gmail.com");
+        selenium.type("id=em", "dev@paperminer.com");
         selenium.click("xpath=(//button[@type='button'])[5]");
         Thread.sleep(1000);
         selenium.click("link=New");
@@ -154,7 +154,7 @@ public class SeleniumTest {
         selenium.open("/PaperMiner/#");
 	    selenium.click("link=Login or Register");
 	    Thread.sleep(600);
-	    selenium.type("id=em", "mr.tincknell@gmail.com");
+	    selenium.type("id=em", "dev@paperminer.com");
 	    selenium.click("xpath=(//button[@type='button'])[5]");
 	    Thread.sleep(600);
 	    selenium.click("link=New");
@@ -181,7 +181,7 @@ public class SeleniumTest {
         Thread.sleep(500);
         selenium.click("link=Login or Register");
         Thread.sleep(500);
-        selenium.type("id=em", "mr.tincknell@gmail.com");
+        selenium.type("id=em", "dev@paperminer.com");
         selenium.click("xpath=(//button[@type='button'])[5]");
         Thread.sleep(500);
         selenium.click("link=New");
@@ -206,7 +206,7 @@ public class SeleniumTest {
         Thread.sleep(600);
         selenium.click("link=Login or Register");
         Thread.sleep(600);
-        selenium.type("id=em", "mr.tincknell@gmail.com");
+        selenium.type("id=em", "dev@paperminer.com");
         selenium.click("xpath=(//button[@type='button'])[5]");
         Thread.sleep(300);
         
@@ -244,7 +244,7 @@ public class SeleniumTest {
         Thread.sleep(600);
         selenium.click("link=Login or Register");
         Thread.sleep(600);
-        selenium.type("id=em", "mr.tincknell@gmail.com");
+        selenium.type("id=em", "dev@paperminer.com");
         selenium.click("xpath=(//button[@type='button'])[5]");
         Thread.sleep(300);
         
@@ -283,7 +283,7 @@ public class SeleniumTest {
         Thread.sleep(600);
         selenium.click("link=Login or Register");
         Thread.sleep(600);
-        selenium.type("id=em", "mr.tincknell@gmail.com");
+        selenium.type("id=em", "dev@paperminer.com");
         selenium.click("xpath=(//button[@type='button'])[5]");
         Thread.sleep(300);
         
@@ -322,7 +322,7 @@ public class SeleniumTest {
         Thread.sleep(600);
         selenium.click("link=Login or Register");
         Thread.sleep(600);
-        selenium.type("id=em", "mr.tincknell@gmail.com");
+        selenium.type("id=em", "dev@paperminer.com");
         selenium.click("xpath=(//button[@type='button'])[5]");
         Thread.sleep(300);
         
@@ -361,7 +361,7 @@ public class SeleniumTest {
         Thread.sleep(600);
         selenium.click("link=Login or Register");
         Thread.sleep(600);
-        selenium.type("id=em", "mr.tincknell@gmail.com");
+        selenium.type("id=em", "dev@paperminer.com");
         selenium.click("xpath=(//button[@type='button'])[5]");
         Thread.sleep(300);
         
@@ -388,7 +388,7 @@ public class SeleniumTest {
         Thread.sleep(600);
         selenium.click("link=Login or Register");
         Thread.sleep(600);
-        selenium.type("id=em", "mr.tincknell@gmail.com");
+        selenium.type("id=em", "dev@paperminer.com");
         selenium.click("xpath=(//button[@type='button'])[5]");
         Thread.sleep(300);
         
@@ -415,7 +415,7 @@ public class SeleniumTest {
         Thread.sleep(600);
         selenium.click("link=Login or Register");
         Thread.sleep(600);
-        selenium.type("id=em", "mr.tincknell@gmail.com");
+        selenium.type("id=em", "dev@paperminer.com");
         selenium.click("xpath=(//button[@type='button'])[5]");
         Thread.sleep(300);
         
@@ -442,7 +442,7 @@ public class SeleniumTest {
         Thread.sleep(600);
         selenium.click("link=Login or Register");
         Thread.sleep(600);
-        selenium.type("id=em", "mr.tincknell@gmail.com");
+        selenium.type("id=em", "dev@paperminer.com");
         selenium.click("xpath=(//button[@type='button'])[5]");
         Thread.sleep(300);
         
@@ -469,7 +469,7 @@ public class SeleniumTest {
         Thread.sleep(600);
         selenium.click("link=Login or Register");
         Thread.sleep(600);
-        selenium.type("id=em", "mr.tincknell@gmail.com");
+        selenium.type("id=em", "dev@paperminer.com");
         selenium.click("xpath=(//button[@type='button'])[5]");
         Thread.sleep(300);
         
@@ -496,7 +496,7 @@ public class SeleniumTest {
         Thread.sleep(600);
         selenium.click("link=Login or Register");
         Thread.sleep(600);
-        selenium.type("id=em", "mr.tincknell@gmail.com");
+        selenium.type("id=em", "dev@paperminer.com");
         selenium.click("xpath=(//button[@type='button'])[5]");
         Thread.sleep(300);
         
@@ -523,7 +523,7 @@ public class SeleniumTest {
         Thread.sleep(600);
         selenium.click("link=Login or Register");
         Thread.sleep(600);
-        selenium.type("id=em", "mr.tincknell@gmail.com");
+        selenium.type("id=em", "dev@paperminer.com");
         selenium.click("xpath=(//button[@type='button'])[5]");
         Thread.sleep(300);
         
@@ -550,7 +550,7 @@ public class SeleniumTest {
         Thread.sleep(600);
         selenium.click("link=Login or Register");
         Thread.sleep(600);
-        selenium.type("id=em", "mr.tincknell@gmail.com");
+        selenium.type("id=em", "dev@paperminer.com");
         selenium.click("xpath=(//button[@type='button'])[5]");
         Thread.sleep(600);
         
