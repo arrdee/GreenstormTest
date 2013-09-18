@@ -239,6 +239,7 @@ var m_currentTerm = null;
 var m_currentZone = null;
 var m_currentQuery = null;
 var m_locations = null;
+var testing = false;
 
 //Histogram global vars
 var H_STARTYEAR = 1800;
@@ -322,19 +323,22 @@ function init ()
 
   m_pubCache = new Array();
   m_locationsCache = new Array();
-
-  $('button#map-zero').button();
-  $('#radio-map').buttonset();
-  _initSlider();
-  _getUserPrefs();
-  getMenu();
   
   // check for remember me cookie and log user in if found
   if ($.cookie('email') !== undefined && $.cookie('didLogout') !== 'true') {
 	  rememberedUser = true;
 	  doLogin('ok');
+  }  
+  
+  $('button#map-zero').button();
+  $('#radio-map').buttonset();
+  _initSlider();
+  _getUserPrefs();
+  if (testing == false) {
+	  getMenu(); 
   }
-   
+
+    
   // pre-load some panes but don't display
   newQuery(false);
   saveQuery(false);
@@ -1227,36 +1231,49 @@ function _createQueryString ()
 */
 function _resetState ()
 {
-  _resetMap();
-
-  if (m_resultSet !== null) {
-    for (var i = 0; i < m_resultSet.length; i++) {
-      if (m_resultSet[i].marker !== null) {
-        m_resultSet[i].marker.setPosition(null);
-        m_resultSet[i].marker = null;
-      }
-    }
+  if (testing == false) {
+	  _resetMap();
+	
+	  if (m_resultSet !== null) {
+	    for (var i = 0; i < m_resultSet.length; i++) {
+	      if (m_resultSet[i].marker !== null) {
+	        m_resultSet[i].marker.setPosition(null);
+	        m_resultSet[i].marker = null;
+	      }
+	    }
+	  }
+	  
+	  if (m_locationsCache !== null) {
+	    for (var lid in m_locationsCache) {
+	      var locn = m_locationsCache[lid];
+	      if (locn.listener != null) {
+	        google.maps.event.removeListener(locn.listener);
+	        locn.listener = null;
+	      }
+	      if (locn.popup != null) {
+	        locn.popup.close();
+	        locn.popup = null;
+	      }
+	      if (locn.marker !== null) {
+	        locn.marker.setVisible(false);
+	        locn.marker.setPosition(null);
+	        locn.marker = null;
+	      }
+	    }
+	  }
+	  m_currentQuery = _createQueryString();
+	  $('div#raw-list-container').html('');
+	  $('div#raw-record-container').html('');
+	  $('#ctl-table button').button('disable');
+	  $('#cc-pb11').button('option', 'label', 'Pause Query');
+	  $('#cc-pb11').button('disable');
+	  $('button#btn-pause').attr('src', 'images/button_grey_pause');
+	  $('button#btn-pause').css('visibility', 'hidden');
+	  var rbGroup = $('input[name="raw-sort-rb"]');
+	  rbGroup.prop('checked', false);
+	  rbGroup[3].checked = true;
+	  $('div#y2k-timeline div').remove();
   }
-  
-  if (m_locationsCache !== null) {
-    for (var lid in m_locationsCache) {
-      var locn = m_locationsCache[lid];
-      if (locn.listener != null) {
-        google.maps.event.removeListener(locn.listener);
-        locn.listener = null;
-      }
-      if (locn.popup != null) {
-        locn.popup.close();
-        locn.popup = null;
-      }
-      if (locn.marker !== null) {
-        locn.marker.setVisible(false);
-        locn.marker.setPosition(null);
-        locn.marker = null;
-      }
-    }
-  }
-  
   m_queryId++;
   m_run = true;
   m_paused = false;
@@ -1272,18 +1289,6 @@ function _resetState ()
   m_locations = new Array();
   m_rawDateIndex = new Array();
   m_locationsCache = new Array();
-  m_currentQuery = _createQueryString();
-  $('div#raw-list-container').html('');
-  $('div#raw-record-container').html('');
-  $('#ctl-table button').button('disable');
-  $('#cc-pb11').button('option', 'label', 'Pause Query');
-  $('#cc-pb11').button('disable');
-  $('button#btn-pause').attr('src', 'images/button_grey_pause');
-  $('button#btn-pause').css('visibility', 'hidden');
-  var rbGroup = $('input[name="raw-sort-rb"]');
-  rbGroup.prop('checked', false);
-  rbGroup[3].checked = true;
-  $('div#y2k-timeline div').remove();
 }
 
 function _updateTimeDisplay ()
@@ -1311,6 +1316,7 @@ function _doQuery (pos){
     $('button#btn-pause').css('visibility', 'visible');
   }
   var queryId = m_queryId;
+
   if (m_fetchSize < MAX_FETCH_SIZE) {
     m_fetchSize = Math.min(MAX_FETCH_SIZE, m_fetchSize * 2);
   }
@@ -1370,7 +1376,6 @@ function _processData (data, pos, id)
     _updateCurrQueryPane();
   }
   else if (m_run && (id === m_queryId)) {
-
 	  /**
 	   * Upgraded to handle multiple zones
 	   * will stall at the end of search query and not complete...
@@ -2726,6 +2731,16 @@ function downloadCsv(){
 		document.body.appendChild(a);
 		a.click();
 	}
+	
+	
+	// --------------- TEST FUNCTION   -------------------- //
+	function test() {
+		_getUserPrefs();
+		_doQuery(0);
+	}
+	
+
 }
+
 
 // EOF
