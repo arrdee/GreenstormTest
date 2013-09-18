@@ -71,6 +71,11 @@
       <include name="commons-pool-1.6.jar"/>
       <include name="commons-dbcp-1.4.jar"/>
       <include name="json_simple-1.1.jar"/>
+      
+	  <!-- Selenium libraries  -->
+      <include name="selenium-java-2.35.0.jar"/>
+	  <include name="guava-14.0.1.jar"/>
+	  
       <!-- junit libraries  -->
       <include name="junit.jar" />
     </fileset>
@@ -159,6 +164,11 @@
         <include name="commons-dbcp-1.4.jar"/>
         <include name="json_simple-1.1.jar"/>
         <include name="mysql-connector-java-5.1.22-bin.jar"/>
+        
+      <!-- Selenium libraries  -->
+      <include name="selenium-java-2.35.0.jar"/>
+	  <include name="guava-14.0.1.jar"/>
+	  
       </fileset>
     </copy>
   
@@ -310,8 +320,7 @@
 
     <jar
       destfile="build/${war.file}"
-      excludes="WEB-INF/classes/au/org/paperminer/test/**,
-                WEB-INF/classes/au/org/paperminer/util/**"
+
       basedir="${war.image}">
     </jar>
   </target>
@@ -347,7 +356,21 @@
     </javadoc>
   </target>
 
-  <target name="test" depends="init">
+  <target name="test" depends="war">
+  
+<junit showoutput="yes" fork="true">
+    <classpath>
+        <!-- The location of the JUnit version that you want to use -->
+        <pathelement location="lib/junit.jar"/>
+    </classpath>
+
+    <formatter type="plain" usefile="false" />
+
+    <batchtest>
+        <fileset dir="src/tests/SeleniumTest.java"/>
+    </batchtest>
+</junit>
+  
   </target>
   
   <target name="deploy.local" depends="war">
