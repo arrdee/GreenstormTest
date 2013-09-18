@@ -545,7 +545,16 @@ function resetQueryPane ()
 			break;
 		case Q_ADVANCED :
 			$('input#aq1').val('');
-			$('select#z1').val('newspaper');
+			$('#z1a').attr('checked', false);
+			$('#z1b').attr('checked', false);
+			$('#z1c').attr('checked', false);
+			$('#z1d').attr('checked', false);
+			$('#z1e').attr('checked', false);
+			$('#z1f').attr('checked', false);
+			$('#z1g').attr('checked', false);
+			$('#z1h').attr('checked', false);
+			$('#aqYearStart').prop('selectedIndex', 0);
+			$('#aqYearEnd option:last').prop('selected',true);
 			break;
 		case Q_CUSTOM :
 			// FIXME: todo
