@@ -879,7 +879,7 @@ body .ui-tooltip {
 	border: 1px solid #8e846b;
 	background: #feeebd
 		url(images/ui-bg_highlight-soft_100_feeebd_1x100.png) 50% top repeat-x;
-	color: #383838
+	color: #383838;
 }
 
 .ui-widget-content a {

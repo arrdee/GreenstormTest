@@ -798,8 +798,19 @@ function showCloud (show)
   }
   
   if (show) {
-	  _showPane(_selById(CLOUD_VIEW));	  
-	  _updateCloud(h_labels, h_data, 'div#year-cloud');
+	  _showPane(_selById(CLOUD_VIEW));	
+	  h_handlers = [];
+	  labels = _histLabelArray();
+	  
+	  for (var i = 0; i < labels.length; i++) {
+		  h_handlers.push = { click: function() {
+						  		m_currentQuery += '&date=' + labels[i];
+						  		_processData(null, -2);
+						  		_doQuery(0);						
+  	  						}};
+		  alert(h_handlers[i]);
+	  }
+	  _updateCloud(h_labels, h_data, 'div#year-cloud', h_handlers);
   }
 
 }
@@ -807,18 +818,23 @@ function showCloud (show)
 /**
  * Creates a cloud for the current search criteria * 
  */
-function _updateCloud(labelArray, weightArray, container, linkArray) {
+function _updateCloud(labelArray, weightArray, container, handlersArray, linkArray) {
 	var cloudArray = [];
 	$(container).empty();
 	
   	for (var i = 0; i < labelArray.length; i++) {
-  		cloudArray[i] = { text: labelArray[i], weight: weightArray[i] };	                
-  	}
-  	
+  		cloudArray[i] = {
+  							text: labelArray[i], 
+  							weight: weightArray[i],
+  							handlers: handlersArray[i]
+  						}; 
+  	};	      
+	
     $(function() {
       	$(container).jQCloud(cloudArray, { delayedMode: true });
     });
 }
+
 
 /**
 * Raw results pane loaded on demand.
@@ -1276,8 +1292,8 @@ function _resetState ()
 	  $('#ctl-table button').button('disable');
 	  $('#cc-pb11').button('option', 'label', 'Pause Query');
 	  $('#cc-pb11').button('disable');
-	  $('button#btn-pause').attr('src', 'images/button_grey_pause');
-	  $('button#btn-pause').css('visibility', 'hidden');
+	  $('img#img-pause').attr('src', 'images/button_grey_pause.png');
+	  $('div#progress-container').css('visibility', 'hidden');
 	  var rbGroup = $('input[name="raw-sort-rb"]');
 	  rbGroup.prop('checked', false);
 	  rbGroup[3].checked = true;
@@ -1322,7 +1338,7 @@ function _doQuery (pos){
   if (pos === 0) {
     _resetState();
     $('#cc-pb11').button('enable');
-    $('button#btn-pause').css('visibility', 'visible');
+    $('div#progress-container').css('visibility', 'visible');
   }
   var queryId = m_queryId;
 
@@ -1333,6 +1349,7 @@ function _doQuery (pos){
             '&s=' + pos + '&n=' + m_fetchSize +
             '&encoding=json' +
             '&callback=?';
+  
   $.getJSON(uri, function (data, status, jqXHR) {
       try {
         if (status == "success") {
@@ -1400,15 +1417,16 @@ function _processData (data, pos, id)
 		  zoneInfo = _getZoneInfo(_currentZones[i]);
 		  for (var j = 0; j < _currentZones.length; j++){
 			  if (zoneResults[j].name == zoneInfo.id) {
-				  zoneResult = zoneResults[j].records[zoneInfo.holder];
+				  zoneResult = zoneResults[j].records[zoneInfo.holder]; 
 				  if (zoneResult) {
 					  var tempPos = pos + (m_fetchSize * i);
 					  for (var k = 0; k < zoneResult.length; k++) {
+						  alert(zoneResult[k]);
 						  m_resultSet[tempPos + k] = { zone: zoneInfo.id, data: zoneResult[k], marker:null };
 						  m_resultSet[tempPos + k].data.text = null;
 						  m_trefIndex[zoneResult[k]['id']] = tempPos + k;
 					  }
-				  }
+				  } 
 			  }
 		  }
 	  }
@@ -1424,7 +1442,7 @@ function _processData (data, pos, id)
       else {
         $('#busy-box').activity(false);
         $('#cc-pb11').button('disable');
-        $('button#btn-pause').css('visibility', 'hidden');
+        $('div#progress-container').css('visibility', 'hidden');
         m_run = false;
         ++m_queryId;
       }
@@ -2006,7 +2024,7 @@ function _updateSearchProgressFields() {
     $('td#z11').html(m_currentZone);
     $('td#n11').html(m_totalRecs);
     $('td#n12').html(m_resultSet == null ? 0 : m_resultSet.length);
-    $('div#div-progress').html(m_resultSet == null ? "" : m_resultSet.length + " / " + m_totalRecs + "<br>records retrieved</br>");
+    $('span#progress').html(m_resultSet == null ? "" : m_resultSet.length + " / " + m_totalRecs + "<br>retrieved</br>");
 }
 
 /**
